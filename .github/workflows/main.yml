@@ -1,0 +1,7 @@
+# Use JMeter to run the JMX test case and produce reports in the "reports/"
+# directory in the workspace.
+- name: Run JMeter Tests
+  uses: rbhadti94/apache-jmeter-action@v0.5.0
+  with:
+    testFilePath: jmeter-test.jmx
+    outputReportsFolder: ./
