@@ -1,6 +1,7 @@
 name: Test JMeter Action
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
