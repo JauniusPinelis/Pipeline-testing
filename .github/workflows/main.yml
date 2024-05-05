@@ -18,10 +18,10 @@ jobs:
         uses: rbhadti94/apache-jmeter-action@v0.5.0
         with:
           testFilePath: jmeter-test.jmx
-          outputReportsFolder: ./
+          outputReportsFolder: /reports
           args: "--loglevel INFO"
 
       - uses: actions/upload-artifact@v1
         with:
           name: jmeter-test-results
-          path: ./
+          path: /reports
