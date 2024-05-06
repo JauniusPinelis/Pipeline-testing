@@ -1,27 +1,27 @@
-name: Test JMeter Action
+name: Node.js Express CI
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches: [master]
+on: [push]
 
 jobs:
-  action_build:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-      - name: Run JMeter Action on a test
-        uses: rbhadti94/apache-jmeter-action@v0.5.0
-        with:
-          testFilePath: jmeter-test.jmx
-          outputReportsFolder: reports/
-          args: "--loglevel INFO"
+    - name: Install dependencies
+      run: npm install
 
-      - uses: actions/upload-artifact@v1
-        with:
-          name: jmeter-test-results
-          path: reports/
+    - name: Build and start Express app
+      run: |
+        npm run build
+        npm start &
+      background: true
+
+    - name: Wait for server to start
+      run: sleep 10
+
+    - name: Run Postman tests
+      run: |
+        npm install -g newman
+        newman run test-collection.json
