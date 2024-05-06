@@ -13,10 +13,10 @@ jobs:
       run: npm install
 
     - name: Build and start Express app
-      run: |
-        npm run build
-        npm start &
-      background: true
+    run: |
+      npm run build
+      npm start &
+      sleep 10 # Wait for server to start
 
     - name: Wait for server to start
       run: sleep 10
