@@ -30,7 +30,7 @@ jobs:
     # Run the POSTMAN collection
     - name: Run POSTMAN collection
       run: |
-       newman run ./test-collection.json
+       newman run ./publicapi-collection.json
 
     # Upload the contents of Test Results directory to workspace
     - name: Output the run Details
